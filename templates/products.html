@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <h1>Products</h1>
+    <div class="row">
+        {% for product in products %}
+            <div class="col">
+                <div class="card" style="width: 18rem;">
+                    
+                    {% if product.image_url %}
+                        <img src="{{product.image_url}}" alt="" class="card-img-top" style="height: 220px;">
+                    {% elif product.image %}
+                        <img src="{{product.image.url}}" alt="" class="card-img-top" style="height: 220px;">
+                    {% else %}
+                        <img src="{% static 'images/default.png' %}" alt="" class="card-img-top" style="height: 220px;">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{product.name}}</h5>
+                        <p class="card-text">${{product.price}}</p>
+                        <a href="#" class="btn btn-primary">Add To Cart</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock content %}
